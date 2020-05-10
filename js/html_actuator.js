@@ -45,6 +45,11 @@ function HTMLActuator() {
     document.querySelector(".var-v512")  .value = params.v512;
     document.querySelector(".var-v1024") .value = params.v1024;
     document.querySelector(".var-v2048") .value = params.v2048;
+    document.querySelector(".var-v4096") .value = params.v4096;
+    document.querySelector(".var-v8192") .value = params.v8192;
+    document.querySelector(".var-v16384").value = params.v16384;
+    document.querySelector(".var-v32768").value = params.v32768;
+    document.querySelector(".var-v65536").value = params.v65536;
     document.querySelector(".var-m")     .value = params.m;
     document.querySelector(".var-w")     .value = params.w;
     document.querySelector(".var-o")     .value = params.o;
@@ -103,26 +108,32 @@ HTMLActuator.prototype.addTile = function (tile) {
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
-  if (tile.value > 2048) classes.push("tile-super");
+  if (tile.value > 65536) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
 
-       if (tile.value == 2   ) inner.textContent = params.v2
-  else if (tile.value == 4   ) inner.textContent = params.v4
-  else if (tile.value == 8   ) inner.textContent = params.v8
-  else if (tile.value == 16  ) inner.textContent = params.v16
-  else if (tile.value == 32  ) inner.textContent = params.v32
-  else if (tile.value == 64  ) inner.textContent = params.v64
-  else if (tile.value == 128 ) inner.textContent = params.v128
-  else if (tile.value == 256 ) inner.textContent = params.v256
-  else if (tile.value == 512 ) inner.textContent = params.v512
-  else if (tile.value == 1024) inner.textContent = params.v1024
-  else if (tile.value == 2048) inner.textContent = params.v2048
+       if (tile.value == 2    ) inner.textContent = params.v2
+  else if (tile.value == 4    ) inner.textContent = params.v4
+  else if (tile.value == 8    ) inner.textContent = params.v8
+  else if (tile.value == 16   ) inner.textContent = params.v16
+  else if (tile.value == 32   ) inner.textContent = params.v32
+  else if (tile.value == 64   ) inner.textContent = params.v64
+  else if (tile.value == 128  ) inner.textContent = params.v128
+  else if (tile.value == 256  ) inner.textContent = params.v256
+  else if (tile.value == 512  ) inner.textContent = params.v512
+  else if (tile.value == 1024 ) inner.textContent = params.v1024
+  else if (tile.value == 2048 ) inner.textContent = params.v2048
+  else if (tile.value == 4096 ) inner.textContent = params.v4096
+  else if (tile.value == 8192 ) inner.textContent = params.v8192
+  else if (tile.value == 16384) inner.textContent = params.v16384
+  else if (tile.value == 32768) inner.textContent = params.v32768
+  else if (tile.value == 65536) inner.textContent = params.v65536
   else                         inner.textContent = params.m;
 
-       if (inner.textContent.length > 4) inner.classList.add("tile-len-5")
+       if (inner.textContent.length > 5) inner.classList.add("tile-len-6")
+  else if (inner.textContent.length > 4) inner.classList.add("tile-len-5")
   else if (inner.textContent.length > 3) inner.classList.add("tile-len-4")
   else if (inner.textContent.length > 2) inner.classList.add("tile-len-3")
   else                                   inner.classList.add("tile-len-2");
